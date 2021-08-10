@@ -36,6 +36,23 @@ namespace Practice2.Controllers
     
         public ActionResult AddEdit(int employeeId)
         {
+            List<Department> departments = _db.Departments.ToList();
+            ViewBag.DepartmentList = new SelectList(departments, "DepartmentId", "DepartmentName");
+            List<Site> sites = _db.Sites.ToList();
+            ViewBag.SiteList = new SelectList(sites, "id", "name");
+            EmployeeDataModel model = new EmployeeDataModel();
+            if (employeeId > 0)
+            {
+                Employee employee = _db.Employees.SingleOrDefault(x => x.EmployeeId == employeeId);
+                if (employee != null)
+                {
+                    model.Name = employee.Name;
+                    model.EmployeeId = employee.EmployeeId;
+                    model.Address = employee.Address;
+                    
+                }
+            }
+            
             return PartialView();  
         }
         [HttpPost]
