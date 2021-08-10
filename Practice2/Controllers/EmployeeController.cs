@@ -36,6 +36,7 @@ namespace Practice2.Controllers
     
         public ActionResult AddEdit(int employeeId)
         {
+            //new  commit
             List<Department> departments = _db.Departments.ToList();
             ViewBag.DepartmentList = new SelectList(departments, "DepartmentId", "DepartmentName");
             List<Site> sites = _db.Sites.ToList();
